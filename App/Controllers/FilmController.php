@@ -28,16 +28,16 @@ class FilmController
         //cridem funcio create del model
         Film::create($data);
         //retornar a la vista principal
-        header('location: /');
+        header('location: /films');
         exit;
     }
 
-   //funcio per a la vista edit
+    //funcio per a la vista edit
     public function edit($id)
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /');
+            header('location: /films');
             exit;
         }
 
@@ -61,7 +61,7 @@ class FilmController
         Film::update($id, $data);
 
         //retonem a la pàgina principal
-        header('location: /');
+        header('location: /films');
         exit;
     }
 
@@ -70,7 +70,7 @@ class FilmController
     {
         //si no ens passen la id fem redirect
         if ($id === null) {
-            header('location: /');
+            header('location: /films');
             exit;
         }
 
@@ -88,7 +88,21 @@ class FilmController
         Film::delete($id);
 
         //retornar a la vista
-        header('location: /');
+        header('location: /films');
+    }
+
+    public function show($id)
+    {
+        // Suposem que tens un mètode per obtenir una pel·lícula per ID
+        $film = Film::find($id); // Asegura't que el mètode 'find' existeix en el model 'Film'
+
+        if (!$film) {
+            // Si no trobem la pel·lícula, podem redirigir o mostrar una pàgina d'error
+            return require '../resources/views/errors/404.blade.php';
+        }
+
+        // Passar la pel·lícula a la vista
+        require '../resources/views/films/show.blade.php';
     }
 
 

@@ -1,123 +1,77 @@
 <?php
-//Fitxer per gestionar les rutes
+// Fitxer per gestionar les rutes
 namespace Core;
 
 use RuntimeException;
 
 class Route
 {
-    //creem array en les rutes
+    // Array per emmagatzemar les rutes
     protected $routes = [];
 
-    //creem funcio per afegir rutes a l'array
-    public function register($route)
+    // Funció per rebre un array de rutes i assignar a la propietat routes
+    public function define($routes)
     {
-        $this->routes[] = $route;
-    }
-
-    //funcio per rebre un array de rutes i assignar a la propietat routes
-    public function define($route)
-    {
-        $this->routes = $route;
+        $this->routes = $routes;
         return $this;
     }
 
-    //funcio per redirigir la url solicitada a un controlador
+    // Funció per redirigir la URL sol·licitada a un controlador
     public function redirect($uri)
     {
-        //partim la url
-        $parts = explode('/', trim($uri,'/'));
-        //indiquem ruta del controlador
-        $controller = 'App\Controllers\FilmController';
+        // Partim la URL
+        $parts = explode('/', trim($uri, '/'));
 
-        //Inici
+        // Si la ruta és la landing page
         if ($uri === '/') {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
+            require '../App/Controllers/LandingController.php';
+            $controllerInstance = new \App\Controllers\LandingController();
             return $controllerInstance->index();
         }
 
-        //create
-        if($parts[0] === 'create') {
+        // Comprovem les rutes de FilmController
+        if (isset($parts[0]) && $parts[0] === 'films') {
             require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            return $controllerInstance->create();
+            $controllerInstance = new \App\Controllers\FilmController();
+
+            // Si no es passa cap altre paràmetre, per defecte es crida a index
+            return isset($parts[1]) ? $this->handleFilmRoutes($controllerInstance, $parts) : $controllerInstance->index();
         }
 
-        //Utilitzant POST guardem
-        if ($parts[0] === 'store' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            //creem variable per agafar les dades de la petició post
-            $data = $_POST;
-            return $controllerInstance->store($data);
-        }
-
-
-        //delete en GET  mirem que sigue delete en la id
-        if($parts[0] === 'delete' && $parts[1]) {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            return $controllerInstance->delete($parts[1]);
-        }
-
-
-        //destroy en POST
-        if ($parts[0] === 'destroy' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            //comprovem si pasen id
-            if (!isset($_POST['id'])){
-                throw new RuntimeException('No id provided');
-            }
-            return $controllerInstance->destroy($_POST['id']);
-        }
-
-
-        //edit en GET
-        if($parts[0] === 'edit' && $parts[1]) {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            return $controllerInstance->edit($parts[1]);
-        }
-
-        //Actualitzar en POST
-        if ($parts[0] === 'update' && $_SERVER['REQUEST_METHOD'] === 'POST') {
-            require '../App/Controllers/FilmController.php';
-            //creem nova instancia
-            $controllerInstance = new $controller();
-            //creem variable per agafar les dades de la petició post
-            $data = $_POST;
-            //comprovem si pasen id
-            if (!isset($_POST['id'])){
-                throw new RuntimeException('No id provided');
-            }
-            return $controllerInstance->update($_POST['id'], $data);
-        }
-
-        //si no es cap dels anteriors retornem la vista 404
+        // Si no coincideix amb cap ruta, retornem la vista 404
         return require '../resources/views/errors/404.blade.php';
-
-
-//        //si ruta no existeix redirigim a vista d'error
-//        if(!array_key_exists($uri, $this->routes)) {
-//            require '../resources/views/errors/404.php';
-//            return $this;
-//        }
-//
-//        //si no troba el controlador
-//        if (!file_exists($this->routes[$uri])) {
-//            throw new RuntimeException("No s'ha trobat el controlador:". $this->routes[$uri]);
-//        }
-//
-//        require $this->routes[$uri];
-//        return $this;
     }
 
+    protected function handleFilmRoutes($controllerInstance, $parts)
+    {
+        switch ($parts[1] ?? null) {
+            case 'create':
+                return $controllerInstance->create();
+            case 'store':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                    return $controllerInstance->store($_POST);
+                }
+                break;
+            case 'delete':
+                return isset($parts[2]) ? $controllerInstance->delete($parts[2]) : require '../resources/views/errors/404.blade.php';
+            case 'edit':
+                return isset($parts[2]) ? $controllerInstance->edit($parts[2]) : require '../resources/views/errors/404.blade.php';
+            case 'update':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+                    return $controllerInstance->update($_POST['id'], $_POST);
+                }
+                break;
+            case 'destroy':
+                if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+                    return $controllerInstance->destroy($_POST['id']);
+                }
+                break;
+            case 'show':
+                return isset($parts[2]) ? $controllerInstance->show($parts[2]) :
+                    require '../resources/views/errors/404.blade.php';
+        }
+
+                // Si no coincideix amb cap ruta, retornem 404
+        return require '../resources/views/errors/404.blade.php';
+    }
 }

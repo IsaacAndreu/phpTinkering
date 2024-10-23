@@ -1,9 +1,4 @@
-<footer aria-labelledby="footer-heading">
-    <div>
-        <div>
-            <p >&copy; 2024 Jordi . All rights reserved.</p>
-        </div>
-    </div>
+<!-- resources/views/layout/footer.blade.php -->
+<footer>
+    <p>&copy; 2024 Projecte Pel·lícules. Tots els drets reservats.</p>
 </footer>
-</body>
-</html>

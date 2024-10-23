@@ -9,7 +9,7 @@
 <body class="bg-gray-100 p-8">
     <div class="max-w-lg mx-auto bg-white shadow-md rounded-lg p-6">
         <h1 class="text-3xl font-bold mb-4">Edit Film</h1>
-        <form action="/update" method="POST">
+        <form action="/films/update" method="POST">
             <input type="hidden" name="id" value="<?= htmlspecialchars($film->id) ?>" class="mt-1 block w-full border border-gray-300 rounded-md p-2">
             <div class="mb-4">
                 <label for="name" class="block text-gray-700">Name:</label>
@@ -25,7 +25,7 @@
             </div>
             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700">Edit</button>
         </form>
-        <a href="/" class="text-gray-500 hover:underline mt-4 block">Return</a>
+        <a href="/films" class="text-gray-500 hover:underline mt-4 block">Return</a>
     </div>
 </body>
 </html>

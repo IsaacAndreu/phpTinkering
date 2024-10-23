@@ -1,5 +1,6 @@
-<nav class="navbar">
-    <div class="nav-links">
-        <a href="#">Películ·les</a>
-    </div>
+<!-- resources/views/layout/nav.blade.php -->
+<nav>
+    <a href="/">Inici</a>
+    <a href="/films">Pel·lícules</a>
+    <a href="/tematica">Tematica</a>
 </nav>
