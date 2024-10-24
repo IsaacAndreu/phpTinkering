@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100 p-8">
-    <h1 class="text-3xl font-bold mb-4">Delete Film</h1>
+    <h1 class="text-3xl font-bold mb-4">Eliminar la pel·licula</h1>
     <p>Vols eliminar la peli "<?= htmlspecialchars($film->name) ?>"?</p>
     <form action="/films/destroy" method="POST" class="mt-4">
         <input type="hidden" name="id" value="<?= $film->id ?>">

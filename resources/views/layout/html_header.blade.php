@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo isset($title) ? $title : 'Benvingut'; ?></title> <!-- Títol per defecte -->
-    <link rel="stylesheet" href="../style.css"> <!-- Enllaça aquí el teu fitxer CSS -->
+    <link rel="stylesheet" href="../css/layout.css"> <!-- Enllaça aquí el teu fitxer CSS -->
 </head>
 <body>
 

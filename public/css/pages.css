@@ -1,0 +1,157 @@
+/* CSS per a les pàgines de Films i Circuits de F1 */
+
+body {
+    background-color: #e5e7eb; /* Color de fons més clar */
+    font-family: 'Verdana', sans-serif; /* Tipografia diferent */
+    padding: 2rem;
+}
+
+.container {
+    max-width: 900px; /* Amplada màxima més gran */
+    background-color: #ffffff; /* Color de fons blanc */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Ombra més marcada */
+    border-radius: 0.5rem;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 2.5rem; /* Més gran que a la pàgina de films */
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #1f2937; /* Color del text més fosc */
+}
+
+p {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #4b5563; /* Color del text més suau */
+}
+
+a {
+    display: inline-block;
+    background-color: #2563eb; /* Color del botó */
+    color: white;
+    padding: 0.5rem 1.25rem; /* Espai del botó */
+    border-radius: 0.3rem;
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+    margin: 0.5rem auto;
+}
+
+a:hover {
+    background-color: #1e40af; /* Color del botó al passar el ratolí */
+}
+
+form {
+    background-color: #f3f4f6; /* Color de fons suau per als formularis */
+    border: 2px solid #2563eb; /* Color del contorn */
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 2rem auto;
+    max-width: 600px;
+}
+
+form:hover {
+    border-color: #1e3a8a; /* Canvi de color al passar el ratolí */
+}
+
+input, textarea {
+    border: 1px solid #d1d5db; /* Color del contorn dels inputs */
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+button {
+    background-color: #2563eb; /* Color del botó */
+    color: white;
+    padding: 0.5rem 1.25rem; /* Espai del botó */
+    border-radius: 0.25rem;
+    border: none;
+    cursor: pointer;
+    margin-top: 1rem;
+    display: block;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #1e3a8a; /* Color del botó al passar el ratolí */
+}
+
+table {
+    width: 100%;
+    margin-top: 1rem;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb; /* Color de la línia inferior */
+    vertical-align: middle; /* Centra verticalment el text */
+}
+
+td:last-child {
+    text-align: center; /* Centra el text només en la columna d'accions */
+}
+
+th {
+    background-color: #dbeafe; /* Color de fons del capçal de la taula */
+    color: #1f2937; /* Color del text del capçal */
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.875rem;
+}
+
+tr:hover {
+    background-color: #e0f2fe; /* Color al passar el ratolí sobre la fila */
+}
+
+.table-header {
+    background-color: #3b82f6; /* Color del capçal */
+    color: white;
+    font-weight: bold;
+}
+
+.table-row {
+    transition: background-color 0.2s ease;
+}
+
+.table-row:hover {
+    background-color: #bfdbfe; /* Color al passar el ratolí sobre la fila */
+}
+
+.add-race-btn, .add-film-btn {
+    background-color: #3b82f6; /* Color del botó "Afegir" */
+    color: white;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.25rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    display: block;
+    margin: 0.5rem auto 1.5rem;
+}
+
+.add-race-btn:hover, .add-film-btn:hover {
+    background-color: #1d4ed8; /* Color del botó "Afegir" al passar el ratolí */
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    th, td {
+        padding: 0.5rem;
+    }
+
+    .add-race-btn, .add-film-btn {
+        width: 100%;
+    }
+}

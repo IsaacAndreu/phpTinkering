@@ -1,0 +1,110 @@
+body {
+    background-color: #f8fafc; /* Color de fons */
+    font-family: Arial, sans-serif; /* Tipus de lletra */
+}
+
+header {
+    background-color: #4f46e5; /* Color de fons del capçal */
+    color: white; /* Color del text del capçal */
+    padding: 20px;
+}
+
+main {
+    padding: 20px;
+}
+
+h2 {
+    color: #333; /* Color del subtítol */
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.bg-gray-100 {
+    background-color: #f7fafc; /* Color de fons dels blocs */
+}
+
+.rounded {
+    border-radius: 0.5rem; /* Arrodoniment de les cantonades */
+}
+
+.shadow-lg {
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Ombra */
+}
+
+.mt-2 {
+    margin-top: 0.5rem; /* Margen superior */
+}
+
+.mb-5 {
+    margin-bottom: 1.25rem; /* Margen inferior */
+}
+
+.text-center {
+    text-align: center; /* Centrat del text */
+}
+
+.text-2xl {
+    font-size: 1.5rem; /* Mida del text */
+}
+
+.text-3xl {
+    font-size: 1.875rem; /* Mida del text */
+}
+
+.text-lg {
+    font-size: 1.125rem; /* Mida del text */
+}
+
+.py-10 {
+    padding-top: 2.5rem; /* Padding superior */
+    padding-bottom: 2.5rem; /* Padding inferior */
+}
+
+img {
+    max-width: 100%; /* La imatge no pot excedir l'amplada del seu contenidor */
+    height: 200px; /* Alçada fixa per a totes les imatges */
+    object-fit: cover; /* Manté la proporció de la imatge i omple el contenidor */
+}
+
+
+.flex {
+    display: flex; /* Estableix el mode flex */
+}
+
+.flex-col {
+    flex-direction: column; /* Orienta els elements en columna */
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 15px; /* Redueix el padding del capçal en pantalles petites */
+    }
+
+    main {
+        padding: 15px; /* Redueix el padding del main en pantalles petites */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Redueix la mida del subtítol en pantalles petites */
+    }
+
+    .text-2xl {
+        font-size: 1.25rem; /* Redueix la mida del text de 2xl en pantalles petites */
+    }
+
+    .text-3xl {
+        font-size: 1.5rem; /* Redueix la mida del text de 3xl en pantalles petites */
+    }
+
+    .grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Ajusta les columnes de la graella en pantalles petites */
+    }
+
+    img {
+        height: auto; /* Permet que les imatges mantinguin la seva proporció */
+    }
+}
